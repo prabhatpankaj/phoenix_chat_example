@@ -6,9 +6,21 @@ defmodule Chat do
   def start(_type, _args) do
     import Supervisor.Spec, warn: false
 
+    topologies = [
+      example: [
+        strategy: Elixir.Cluster.Strategy.Kubernetes.DNS,
+        config: [
+          service: "chat-nodes.default",
+          application_name: "chat",
+          polling_interval: 10_000
+        ]
+      ]
+    ]
+
     children = [
       # Start the endpoint when the application starts
-      supervisor(Chat.Endpoint, []),
+      {Cluster.Supervisor, [topologies, [name: Chat.ClusterSupervisor]]},
+      supervisor(Chat.Endpoint, [])
       # Here you could define other workers and supervisors as children
       # worker(Chat.Worker, [arg1, arg2, arg3]),
     ]
