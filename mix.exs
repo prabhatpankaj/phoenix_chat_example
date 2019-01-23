@@ -29,7 +29,7 @@ defmodule Chat.Mixfile do
       {:phoenix_live_reload, "~> 1.1", only: :dev},
       {:postgrex, "~> 0.13"},
       {:cowboy, "~> 1.1"},
-      {:libcluster, "~> 3.0"}
+      {:phoenix_pubsub_redis, "~> 2.1"}
     ]
   end
 end
