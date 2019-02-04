@@ -6,9 +6,19 @@ defmodule Chat do
   def start(_type, _args) do
     import Supervisor.Spec, warn: false
 
+    topologies = [
+      k8s_chat: [
+        strategy: Cluster.Strategy.Kubernetes.DNS,
+        config: [
+          service: "chat-nodes",
+          application_name: "chat"
+        ]
+      ]
+    ]
+
     children = [
       # Start the endpoint when the application starts
-      # {Cluster.Supervisor, [topologies, [name: Chat.ClusterSupervisor]]},
+      {Cluster.Supervisor, [topologies, [name: Chat.ClusterSupervisor]]},
       supervisor(Chat.Endpoint, [])
       # Here you could define other workers and supervisors as children
       # worker(Chat.Worker, [arg1, arg2, arg3]),

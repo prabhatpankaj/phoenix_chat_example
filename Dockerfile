@@ -1,4 +1,4 @@
-FROM elixir:1.7.4-alpine
+FROM elixir:1.8-alpine
 
 # Set exposed ports
 
