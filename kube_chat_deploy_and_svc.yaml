@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: phoenix-chat
-        image: alvises/phoenix-chat-example:libcluster-kube
+        image: chat:libcluster #alvises/phoenix-chat-example:libcluster-kube
         ports:
         - containerPort: 4000
         env:
