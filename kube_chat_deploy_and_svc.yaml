@@ -17,14 +17,14 @@ spec:
     spec:
       containers:
       - name: phoenix-chat
-        image: alvises/phoenix-chat-example:0.0.4
+        image: prabhatiitbhu/phoenix-chat-example:latest
         ports:
         - containerPort: 4000
         env:
         - name: PORT
           value: "4000"
         - name: PHOENIX_CHAT_HOST
-          value: "chat.poeticoding.com"
+          value: "chat.freelab.ml"
         - name: MY_POD_IP
           valueFrom:
             fieldRef:
